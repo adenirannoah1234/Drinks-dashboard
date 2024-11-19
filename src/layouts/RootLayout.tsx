@@ -2,19 +2,36 @@ import { Box, Flex } from '@chakra-ui/react';
 import Sidebar from '../components/Sidebar';
 import { Outlet } from 'react-router-dom';
 import TopNav from '../components/TopNav';
+import { useState } from 'react';
 
 const RootLayout = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   return (
     <Flex h="100vh" direction="row" backgroundColor="#f9f9f9" overflow="hidden">
       <Box as="nav" flexShrink={0} height="100%">
-        <Sidebar />
+        <Sidebar
+          isOpen={isMobileMenuOpen}
+          onClose={() => setIsMobileMenuOpen(false)}
+        />
       </Box>
 
       <Flex direction="column" flex="1" minWidth={0} height="100%">
         <Box as="header" flexShrink={0}>
-          <TopNav />
+          <TopNav onMenuClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} />
         </Box>
-
+        {isMobileMenuOpen && (
+          <Box
+            position="fixed"
+            top={0}
+            left={0}
+            right={0}
+            bottom={0}
+            bg="blackAlpha.600"
+            display={{ base: 'block', lg: 'none' }}
+            onClick={() => setIsMobileMenuOpen(false)}
+            zIndex={998}
+          />
+        )}
         <Box
           as="main"
           flex="1"
