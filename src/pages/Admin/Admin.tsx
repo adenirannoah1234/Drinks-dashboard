@@ -1,5 +1,7 @@
+import TableComponent from '../Dashboard/components/Table';
+
 const Admin = () => {
-  return <div>Admin</div>;
+  return <TableComponent />;
 };
 
 export default Admin;
