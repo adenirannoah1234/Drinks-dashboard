@@ -36,7 +36,7 @@ const RootLayout = () => {
           as="main"
           flex="1"
           overflowY="auto"
-          bg="#e8e8e3ff"
+          bg="#ffffffff"
           p={4}
           minWidth={0}
           sx={{

@@ -4,7 +4,7 @@ import RootLayout from './layouts/RootLayout';
 import Dashboard from './pages/Dashboard/Dashboard';
 import NotFound from './pages/NotFound/Notfound';
 import TransactionHistory from './pages/transaction-history/TransactionHistory';
-import StockList from './pages/Dashboard/stock-list/StockList';
+// import StockList from './pages/stock-list/StockList';
 import StockInAndOut from './pages/stock-in-out/StockInAndOut';
 import Inventory from './pages/Inventory/Inventory';
 import Admin from './pages/Admin/Admin';
@@ -16,7 +16,7 @@ function App() {
         <Route element={<RootLayout />}>
           <Route path="/" element={<Dashboard />} />
           <Route path="/transaction-history" element={<TransactionHistory />} />
-          <Route path="/stock-list" element={<StockList />} />
+          {/* <Route path="/stock-list" element={<StockList />} /> */}
           <Route path="/stock-in-out" element={<StockInAndOut />} />
           <Route path="/inventory" element={<Inventory />} />
           <Route path="/admin" element={<Admin />} />
