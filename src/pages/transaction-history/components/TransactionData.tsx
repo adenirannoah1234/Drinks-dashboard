@@ -1,9 +1,8 @@
 import { Stack, Text, Box, GridItem, Grid, Divider } from '@chakra-ui/react';
-import CardComponent from './Card';
+// import CardComponent from '../../Dashboard/components/Card';
+import { MoneyData } from '../../Dashboard/components/data';
 
-import { MoneyData } from './data';
-
-const DashboardHeading = () => {
+const TransactionData = () => {
   return (
     <Stack>
       <Grid
@@ -133,9 +132,9 @@ const DashboardHeading = () => {
           </Box>
         </GridItem>
       </Grid>
-      <CardComponent />
+      {/* <CardComponent /> */}
     </Stack>
   );
 };
 
-export default DashboardHeading;
+export default TransactionData;

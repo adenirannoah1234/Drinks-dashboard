@@ -1,6 +1,6 @@
 import { Box, Flex } from '@chakra-ui/react';
 
-type StatusType = 'Sold Goods' | 'Rejected' | 'Returned';
+type StatusType = 'Sold Goods' | 'Rejected' | 'Returned' | 'Pend Goods';
 
 // interface StyleConfig {
 //   color: string;
@@ -32,6 +32,13 @@ const TransactionStatus = ({ type }: { type: StatusType }) => {
         circle: {
           outer: '#DC2626',
           inner: '#DC2626',
+        },
+      },
+      'Pend Goods': {
+        color: '#78520bff',
+        circle: {
+          outer: '#78520bff',
+          inner: '#78520bff',
         },
       },
     };
