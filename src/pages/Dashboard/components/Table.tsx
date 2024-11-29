@@ -12,6 +12,7 @@ import {
 } from '@chakra-ui/react';
 import TransactionStatus from './status';
 import { TableData } from './data';
+import { useNavigate } from 'react-router-dom';
 type StatusType = 'Sold Goods' | 'Rejected' | 'Returned';
 const TransactionTable = () => {
   // const getStatusColor = (status: string) => {
@@ -25,6 +26,7 @@ const TransactionTable = () => {
   //       return '#71717A';
   //   }
   // };
+  const navigate = useNavigate();
 
   return (
     <Box
@@ -103,6 +105,7 @@ const TransactionTable = () => {
                     px={6}
                     _hover={{ bg: '#00a862ff' }}
                     rounded="md"
+                    onClick={() => navigate(`/invoice`)}
                   >
                     View
                   </Button>

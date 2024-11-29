@@ -14,7 +14,9 @@ import {
   VStack,
   Text,
   Select,
+  IconButton,
 } from '@chakra-ui/react';
+import { X } from 'lucide-react';
 
 const NewRecordModal = ({
   isOpen,
@@ -85,6 +87,10 @@ const NewRecordModal = ({
     );
   };
 
+  const handleDeleteRecord = (id: number) => {
+    setRecords(records.filter((record) => record.id !== id));
+  };
+
   return (
     <Modal isOpen={isOpen} onClose={onClose} size={{ base: 'full', md: 'xl' }}>
       <ModalOverlay />
@@ -103,22 +109,38 @@ const NewRecordModal = ({
               <Flex key={record.id} direction="column" w="100%" gap={4}>
                 <FormControl>
                   <FormLabel>Product Name</FormLabel>
-                  <Input
-                    value={record.productName}
-                    onChange={(e) =>
-                      handleInputChange(
-                        record.id,
-                        'productName',
-                        e.target.value
-                      )
-                    }
-                  />
+                  <Flex>
+                    <Input
+                      value={record.productName}
+                      focusBorderColor="#00a862ff"
+                      _hover={{ borderColor: '#00a862ff' }}
+                      onChange={(e) =>
+                        handleInputChange(
+                          record.id,
+                          'productName',
+                          e.target.value
+                        )
+                      }
+                    />
+                    {records.length > 1 && record.id !== records[0].id && (
+                      <IconButton
+                        aria-label="Delete Record"
+                        icon={<X />}
+                        color="red"
+                        onClick={() => handleDeleteRecord(record.id)}
+                        variant="ghost"
+                        _hover={{ bg: 'transparent' }}
+                      />
+                    )}
+                  </Flex>
                 </FormControl>
                 <Flex justify="space-between" gap={4}>
                   <FormControl w="40%">
                     <FormLabel>Quantity</FormLabel>
                     <Input
                       value={record.quantity}
+                      focusBorderColor="#00a862ff"
+                      _hover={{ borderColor: '#00a862ff' }}
                       type="number"
                       onChange={(e) =>
                         handleInputChange(record.id, 'quantity', e.target.value)
@@ -130,6 +152,8 @@ const NewRecordModal = ({
                     <Input
                       type="number"
                       value={record.pricePerUnit}
+                      focusBorderColor="#00a862ff"
+                      _hover={{ borderColor: '#00a862ff' }}
                       onChange={(e) =>
                         handleInputChange(
                           record.id,
@@ -143,6 +167,8 @@ const NewRecordModal = ({
                 <FormControl>
                   <FormLabel>Subtotal</FormLabel>
                   <Input
+                    focusBorderColor="#00a862ff"
+                    _hover={{ borderColor: '#00a862ff' }}
                     value={
                       record.subtotal
                         ? `₦${record.subtotal.toLocaleString()}`
@@ -167,19 +193,41 @@ const NewRecordModal = ({
             </Button>
             <FormControl>
               <FormLabel>Total Amount</FormLabel>
-              <Input type="number" readOnly bg="gray.50" />
+              <Input
+                type="number"
+                readOnly
+                bg="gray.50"
+                focusBorderColor="#00a862ff"
+                _hover={{ borderColor: '#00a862ff' }}
+              />
             </FormControl>
             <FormControl>
               <FormLabel>Amount Sent to Account</FormLabel>
-              <Input type="number" readOnly bg="gray.50" />
+              <Input
+                type="number"
+                readOnly
+                bg="gray.50"
+                focusBorderColor="#00a862ff"
+                _hover={{ borderColor: '#00a862ff' }}
+              />
             </FormControl>
             <FormControl>
               <FormLabel>Amount at Hand</FormLabel>
-              <Input type="number" readOnly bg="gray.50" />
+              <Input
+                type="number"
+                readOnly
+                bg="gray.50"
+                focusBorderColor="#00a862ff"
+                _hover={{ borderColor: '#00a862ff' }}
+              />
             </FormControl>
             <FormControl>
               <FormLabel>Payment Type</FormLabel>
-              <Select placeholder="Select option">
+              <Select
+                placeholder="Select option"
+                focusBorderColor="#00a862ff"
+                _hover={{ borderColor: '#00a862ff' }}
+              >
                 <option value="option1">Option 1</option>
                 <option value="option2">Option 2</option>
                 <option value="option3">Option 3</option>
@@ -188,7 +236,13 @@ const NewRecordModal = ({
           </VStack>
         </ModalBody>
         <ModalFooter>
-          <Button bg="#2D2D2D" color="white" _hover={{ bg: '#1D1D1D' }} mr={3}>
+          <Button
+            bg="#2D2D2D"
+            color="white"
+            _hover={{ bg: '#1D1D1D' }}
+            mr={3}
+            borderRadius={'3xl'}
+          >
             Submit
           </Button>
           <Button
@@ -196,6 +250,7 @@ const NewRecordModal = ({
             onClick={onClose}
             border={'1px solid red'}
             color={'red'}
+            borderRadius={'3xl'}
           >
             Close
           </Button>

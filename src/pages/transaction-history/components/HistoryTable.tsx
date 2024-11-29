@@ -12,6 +12,7 @@ import {
 import TransactionStatus from '../../Dashboard/components/status';
 import { TableData } from './data';
 import { FaFilter } from 'react-icons/fa6';
+import { useNavigate } from 'react-router-dom';
 type StatusType = 'Sold Goods' | 'Pend Goods';
 const TransactionTable = () => {
   // const getStatusColor = (status: string) => {
@@ -25,7 +26,7 @@ const TransactionTable = () => {
   //       return '#71717A';
   //   }
   // };
-
+  const navigate = useNavigate();
   return (
     <Box
       w="full"
@@ -106,6 +107,10 @@ const TransactionTable = () => {
                     px={6}
                     _hover={{ bg: '#00a862ff' }}
                     rounded="md"
+                    // onClick={() => navigate(`/invoice/${row.Invoice}`)}
+                    onClick={() => {
+                      navigate('/invoice');
+                    }}
                   >
                     View
                   </Button>

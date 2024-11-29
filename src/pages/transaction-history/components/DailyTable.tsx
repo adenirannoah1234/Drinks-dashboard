@@ -2,6 +2,7 @@ import { Box, Button, Table, Thead, Tbody, Tr, Th, Td } from '@chakra-ui/react';
 //   import TransactionStatus from '../../Dashboard/components/status';
 import { DailyData } from './data';
 import { FaFilter } from 'react-icons/fa6';
+import { useNavigate } from 'react-router-dom';
 //   type StatusType = 'Sold Goods' | 'Pend Goods';
 const TransactionTable = () => {
   // const getStatusColor = (status: string) => {
@@ -15,7 +16,7 @@ const TransactionTable = () => {
   //       return '#71717A';
   //   }
   // };
-
+  const navigate = useNavigate();
   return (
     <Box
       w="full"
@@ -85,6 +86,7 @@ const TransactionTable = () => {
                     _hover={{ bg: '#00a862ff' }}
                     textAlign={'center'}
                     rounded="md"
+                    onClick={() => navigate(`/invoice`)}
                   >
                     View
                   </Button>
