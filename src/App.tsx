@@ -8,6 +8,7 @@ import TransactionHistory from './pages/transaction-history/TransactionHistory';
 import StockInAndOut from './pages/stock-in-out/StockInAndOut';
 import Inventory from './pages/Inventory/Inventory';
 import Admin from './pages/Admin/Admin';
+import Invoice from './pages/transaction-history/invoice/Invoice';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/stock-in-out" element={<StockInAndOut />} />
           <Route path="/inventory" element={<Inventory />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/invoice" element={<Invoice />} />
         </Route>
 
         <Route path="*" element={<NotFound />} />
