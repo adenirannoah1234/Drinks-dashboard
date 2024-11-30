@@ -1,42 +1,30 @@
+import { useState, useEffect } from 'react';
 import { Box, Button, Table, Thead, Tbody, Tr, Th, Td } from '@chakra-ui/react';
-//   import TransactionStatus from '../../Dashboard/components/status';
-import { DailyData } from './data';
 import { FaFilter } from 'react-icons/fa6';
-//   type StatusType = 'Sold Goods' | 'Pend Goods';
+
 const TransactionTable = () => {
-  // const getStatusColor = (status: string) => {
-  //   switch (status) {
-  //     case 'Sold Goods':
-  //       return '#10B981';
-  //     case 'Rejected':
-  //     case 'Returned':
-  //       return '#EF4444';
-  //     default:
-  //       return '#71717A';
-  //   }
-  // };
+  // State to hold the fetched data
+  const [dailyData, setDailyData] = useState<any[]>([]);
+
+  // Fetch daily transaction data from the API
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/api/daily-transactions');
+        const data = await response.json();
+        if (data.success) {
+          setDailyData(data.data); // Set the data if the request is successful
+        }
+      } catch (error) {
+        console.error('Error fetching daily transaction data:', error);
+      }
+    };
+
+    fetchData(); // Call the fetch function on component mount
+  }, []);
 
   return (
-    <Box
-      w="full"
-      overflow="hidden"
-      rounded="lg"
-      // border="1px"
-      // borderColor="gray.200"
-    >
-      {/* <Flex justify="space-between" align="center" p={4}>
-          <Heading size="md">Recent Transactions</Heading>
-          <Button
-            bg="#3d3d3dff"
-            color="white"
-            _hover={{ bg: '#3d3d3dff' }}
-            rounded="full"
-            px={6}
-          >
-            See all
-          </Button>
-        </Flex> */}
-
+    <Box w="full" overflow="hidden" rounded="lg">
       <Box overflowX="auto">
         <Table>
           <Thead bg="#2b2b2bff">
@@ -50,9 +38,8 @@ const TransactionTable = () => {
               <Th color="white" whiteSpace={'nowrap'}>
                 Total At Hand
               </Th>
-
               <Th color="white" whiteSpace={'nowrap'}>
-                Total At Amount
+                Total Amount
               </Th>
               <Th color="white" alignSelf={'center'}>
                 <FaFilter size={20} />
@@ -60,21 +47,19 @@ const TransactionTable = () => {
             </Tr>
           </Thead>
           <Tbody>
-            {DailyData.map((row) => (
-              <Tr key={row.id}>
+            {dailyData.map((row) => (
+              <Tr key={row._id}>
                 <Td fontWeight={400} fontSize={'1.1rem'} whiteSpace={'nowrap'}>
-                  {row.date}
-                </Td>
-
-                <Td fontWeight={400} fontSize={'1.1rem'} whiteSpace={'nowrap'}>
-                  {row.totalTransaction}
+                  {new Date(row.date).toLocaleDateString()} {/* Format date */}
                 </Td>
                 <Td fontWeight={400} fontSize={'1.1rem'} whiteSpace={'nowrap'}>
-                  {row.totalAtHand}
+                  {row.totalTransactions}
                 </Td>
-
                 <Td fontWeight={400} fontSize={'1.1rem'} whiteSpace={'nowrap'}>
-                  {row.totalAtAmount}
+                  {row.totalCashAtHand}
+                </Td>
+                <Td fontWeight={400} fontSize={'1.1rem'} whiteSpace={'nowrap'}>
+                  {row.totalAmount}
                 </Td>
                 <Td>
                   <Button
